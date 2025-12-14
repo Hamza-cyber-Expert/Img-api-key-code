@@ -5,8 +5,8 @@ addEventListener('fetch', event => {
 const IMG_BB_API_KEY = 'b32ff9b073b75334477d3f1faf2bb2a5' // API Key managed by 𝐃ᴇᴠ|𝐀ɴ𝐬ʜ𝐀ᴘɪ
 const DECOHERE_URL = 'https://www.decohere.ai/api/accountDetails?token=turbo'
 const GENERATE_TURBO_URL = 'https://turbo.decohere.ai/generate/turbo'
-const CREDIT_OWNER = 'OLD-STUDIO' // DO NOT REMOVE OR MODIFY THIS CREDIT
-const CREDIT_CHANNEL = 'https://t.me/old_studio786' // Official channel by old-studio
+const CREDIT_OWNER = 'Click Grow' // DO NOT REMOVE OR MODIFY THIS CREDIT
+const REGARDS = 'https://clickgrow.shop' // Official Website by Developer
 
 function generateSeed() {
     return Math.floor(Math.random() * 2147483647)
@@ -25,7 +25,7 @@ async function fetchTurboToken() {
             "Sec-Fetch-Dest": "empty",
             "Referer": "https://www.decohere.ai/create",
             "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
-            "X-Credit": CREDIT_OWNER // Credit header added by old-studio
+            "X-Credit": CREDIT_OWNER // Credit header added by Click Grow
         }
     })
     const data = await response.json()
@@ -58,7 +58,7 @@ async function fetchWithAuth(url, data, authorization) {
             "Referer": "https://www.decohere.ai/create",
             "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
             "X-Developer": CREDIT_OWNER, // Additional credit header
-            "X-Powered-By": "old-studio AI System"
+            "X-Powered-By": "Click Grow AI System"
         },
         body: JSON.stringify(enhancedData)
     })
@@ -76,7 +76,7 @@ async function uploadToImgBB(base64Image) {
     formData.append('image', base64Image)
     // Adding credit to form data
     formData.append('credit', CREDIT_OWNER)
-    formData.append('source', 'AI Generator by old-studio')
+    formData.append('source', 'AI Generator by Click Grow')
 
     const response = await fetch('https://api.imgbb.com/1/upload', {
         method: 'POST',
@@ -87,7 +87,7 @@ async function uploadToImgBB(base64Image) {
     // Add credit to returned data
     if (data.data) {
         data.data.credit = CREDIT_OWNER
-        data.data.generator = 'Created by old-studio'
+        data.data.generator = 'Created by Click Grow'
     }
     return data.data.url
 }
@@ -97,7 +97,7 @@ async function fetchAndDisplayImages(prompt, imageNumber, turboToken) {
     const imageUrls = {}
     
     // Initialize with credit info
-    imageUrls._system = 'Powered by old-studio'
+    imageUrls._system = 'Powered by Click Grow'
     imageUrls._developer = CREDIT_OWNER
     imageUrls._channel = CREDIT_CHANNEL
     imageUrls._generated_at = new Date().toISOString()
@@ -130,7 +130,7 @@ async function fetchAndDisplayImages(prompt, imageNumber, turboToken) {
                     prompt: prompt,
                     seed: seedValue + i,
                     generated_by: CREDIT_OWNER,
-                    watermark: 'old-studio'
+                    watermark: 'Click Grow'
                 }
             } else {
                 return {
@@ -144,7 +144,7 @@ async function fetchAndDisplayImages(prompt, imageNumber, turboToken) {
                 error: `Error: HTTP status code ${result.http_code}`,
                 developer: CREDIT_OWNER,
                 support: CREDIT_CHANNEL,
-                note: 'Please report issues to old-studio'
+                note: 'Please report issues to Click Grow'
             }
         }
     }
@@ -154,9 +154,9 @@ async function fetchAndDisplayImages(prompt, imageNumber, turboToken) {
 
 function getRandomUserAgent() {
     const userAgents = [
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3 [Powered by old-studio]",
-        "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36 [Developer: old-studio]",
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36 [AI by old-studio]"
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3 [Powered by Click Grow]",
+        "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36 [Developer: Click Grow]",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36 [AI by Click Grow]"
     ]
     return userAgents[Math.floor(Math.random() * userAgents.length)]
 }
@@ -211,13 +211,13 @@ async function handleRequest(request) {
                 channel: CREDIT_CHANNEL,
                 generated_at: new Date().toISOString(),
                 version: '1.0',
-                copyright: `© ${new Date().getFullYear()} old-studio. All rights reserved.`
+                copyright: `© ${new Date().getFullYear()} Click Grow. All rights reserved.`
             }
         }
 
         if (imageUrls.error) {
             responseData.credit = CREDIT_OWNER
-            responseData.note = 'For support, contact old-studio'
+            responseData.note = 'For support, contact Click Grow'
             return new Response(JSON.stringify(responseData, null, 2), { 
                 status: 500,
                 headers: { 
@@ -234,8 +234,8 @@ async function handleRequest(request) {
                     'Access-Control-Allow-Origin': '*',
                     'X-Powered-By': CREDIT_OWNER,
                     'X-Official-Channel': CREDIT_CHANNEL,
-                    'X-Developer-Credit': 'old-studio',
-                    'X-Watermark': 'Generated by old-studio AI'
+                    'X-Developer-Credit': 'Click Grow',
+                    'X-Watermark': 'Generated by Click Grow AI'
                 } 
             })
         }
@@ -244,7 +244,7 @@ async function handleRequest(request) {
             error: 'An unexpected error occurred.',
             developer: CREDIT_OWNER,
             contact: CREDIT_CHANNEL,
-            note: 'Please report this error to old-studio',
+            note: 'Please report this error to Click Grow',
             timestamp: new Date().toISOString()
         }, null, 2), { 
             status: 500,
@@ -257,4 +257,4 @@ async function handleRequest(request) {
     }
 }
 
-
+            
